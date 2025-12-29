@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Frosty Scoops 🍨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ffe4e1, #fff0f5);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #ff69b4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #ff1493;
+            margin-bottom: 10px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .checkbox-group label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        button {
+            background: #ff1493;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff69b4;
+        }
+
+        .summary {
+            background: #fff5fa;
+            border: 2px dashed #ff69b4;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* ============================= */
+        /* BACKGROUND DECOR LAYER */
+        /* ============================= */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+
+            background-image:
+                url("https://cdn-icons-png.flaticon.com/512/1046/1046784.png"),
+                url("https://cdn-icons-png.flaticon.com/512/3081/3081559.png"),
+                url("https://cdn-icons-png.flaticon.com/512/2965/2965567.png"),
+                url("https://cdn-icons-png.flaticon.com/512/1046/1046758.png"),
+                radial-gradient(circle, rgba(255, 105, 180, 0.15) 1px, transparent 1px);
+
+            background-size:
+                80px 80px,
+                70px 70px,
+                90px 90px,
+                60px 60px,
+                25px 25px;
+
+            background-position:
+                10% 20%,
+                80% 30%,
+                20% 70%,
+                75% 80%,
+                0 0;
+
+            background-repeat: repeat;
+            opacity: 0.08;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Decorative Layer -->
+    <div class="bg-pattern"></div>
+
+    <header>
+        🍨 Frosty Scoops – Design Your Ice Cream
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>👤 Your Name on Cup</h2>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+
+        <div class="card">
+            <h2>🍦 Choose Ice Cream Flavour</h2>
+            <select id="flavour">
+                <option>Vanilla</option>
+                <option>Chocolate</option>
+                <option>Strawberry</option>
+                <option>Mango</option>
+                <option>Butterscotch</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <h2>🍫 Choose Dip</h2>
+            <select id="dip">
+                <option>No Dip</option>
+                <option>Chocolate Dip</option>
+                <option>White Chocolate Dip</option>
+                <option>Caramel Dip</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <h2>🧁 Cup or Cone</h2>
+            <select id="cup">
+                <option>Cup</option>
+                <option>Waffle Cone</option>
+                <option>Sugar Cone</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <h2>🍬 Toppings</h2>
+            <div class="checkbox-group">
+                <label><input type="checkbox" value="Sprinkles"> Sprinkles</label>
+                <label><input type="checkbox" value="Choco Chips"> Choco Chips</label>
+                <label><input type="checkbox" value="Oreo Crumbs"> Oreo Crumbs</label>
+                <label><input type="checkbox" value="Nuts"> Nuts</label>
+                <label><input type="checkbox" value="Cherry"> Cherry</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <button onclick="generateOrder()">🍨 Place My Ice Cream Order</button>
+        </div>
+
+        <div class="card summary" id="summary">
+            <h2>🧾 Order Summary</h2>
+            <p>Your delicious ice cream details will appear here 😋</p>
+        </div>
+
+    </div>
+
+    <footer>
+        © 2025 Frosty Scoops | Crafted with ❤️ & Ice Cream
+    </footer>
+
+    <script>
+        function generateOrder() {
+            const name = document.getElementById("name").value || "Guest";
+            const flavour = document.getElementById("flavour").value;
+            const dip = document.getElementById("dip").value;
+            const cup = document.getElementById("cup").value;
+
+            const toppings = [];
+            document.querySelectorAll(".checkbox-group input:checked")
+                .forEach(item => toppings.push(item.value));
+
+            document.getElementById("summary").innerHTML = `
+      <h2>🍨 Order Summary</h2>
+      <p><strong>Name on Cup:</strong> ${name}</p>
+      <p><strong>Flavour:</strong> ${flavour}</p>
+      <p><strong>Dip:</strong> ${dip}</p>
+      <p><strong>Cup/Cone:</strong> ${cup}</p>
+      <p><strong>Toppings:</strong> ${toppings.length ? toppings.join(", ") : "None"}</p>
+      <p>✨ Enjoy your ice cream!</p>
+    `;
+        }
+    </script>
+
+</body>
+
+</html>
